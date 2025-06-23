@@ -109,26 +109,6 @@ Weave a unique tale as you explore. Each minigame adds chapters to your story, w
 
 ---
 
-## 🤝 How to Contribute
-
-We invite the community to help **Ruta del Gallo Pinto** thrive! To contribute, follow these steps:
-
-1. **Fork the Repository**: Create your own copy to begin working.
-2. **Create a Branch**: Use descriptive names, such as `feature/new-minigame` or `bugfix/board`.
-3. **Follow Style Guidelines**:
-   - Preserve the minimalist aesthetic with white tones.
-   - Design minigames to be quick and engaging.
-   - Honor the Costa Rican theme and dog characters 🐶.
-4. **Submit a Pull Request**: Detail your changes and their impact on the game.
-5. **Ideas Welcome**:
-   - New minigames inspired by Costa Rica.
-   - Designs for dog characters or regions.
-   - Story elements for the narrative mode.
-
-See the `CONTRIBUTING.md` file for additional guidance.
-
----
-
 ## 🙌 Credits
 
 - **Original Concept**: A celebration of Costa Rican culture and culinary adventure.
@@ -143,11 +123,4 @@ This project is licensed under the **MIT License**. You may use, modify, and dis
 
 ---
 
-## 📬 Contact
-
-Have ideas, feedback, or issues to report? Get in touch!
-- **Email**: ruta.del.gallo.pinto@example.com
-- **Social Media**: Follow us on [X](https://x.com/rutagallo) for updates.
-- **Community**: Join our [Discord](#) (coming soon).
-
-Pura vida and happy cooking! 🌮🐶
+Pura vida and happy gaming! 🌮🐶
