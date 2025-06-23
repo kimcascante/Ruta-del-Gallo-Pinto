@@ -8,161 +8,143 @@ pub trait IGame<T> {
     fn rest(ref self: T);
 }
 
+use starknet::{ContractAddress, get_caller_address, get_block_timestamp};
+use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
+use full_starter_react::store::{Store, StoreTrait};
+use full_starter_react::models::{
+    GameState, GameStateTrait, Player, PlayerTrait, Ingredient, IngredientTrait, BoardTile,
+    BoardTileTrait, BOARD_WIDTH, BOARD_HEIGHT, MAX_PLAYERS
+};
+
 #[dojo::contract]
-pub mod game {
-    // Local import
-    use super::{IGame};
-
-    // Achievement import
-    use full_starter_react::achievements::achievement::{Achievement, AchievementTrait};
-
-    // Store import
-    use full_starter_react::store::{StoreTrait};
-
-    // Constant import
-    use full_starter_react::constants;
-
-    // Models import
-    use full_starter_react::models::player::{PlayerAssert};
-
-    // Dojo achievements imports
-    use achievement::components::achievable::AchievableComponent;
-    use achievement::store::{StoreTrait as AchievementStoreTrait};
-    component!(path: AchievableComponent, storage: achievable, event: AchievableEvent);
-    impl AchievableInternalImpl = AchievableComponent::InternalImpl<ContractState>;
-
-    // Dojo Imports
-    #[allow(unused_imports)]
-    use dojo::model::{ModelStorage};
-    #[allow(unused_imports)]
-    use dojo::world::{WorldStorage, WorldStorageTrait};
-    #[allow(unused_imports)]
-    use dojo::event::EventStorage;
-
-    use starknet::{get_block_timestamp};
-
-    #[storage]
-    struct Storage {
-        #[substorage(v0)]
-        achievable: AchievableComponent::Storage,
-    }
+mod game {
+    use super::{
+        IWorldDispatcher, IWorldDispatcherTrait, Store, StoreTrait, GameState, GameStateTrait,
+        Player, PlayerTrait, Ingredient, IngredientTrait, BoardTile, BoardTileTrait, BOARD_WIDTH,
+        BOARD_HEIGHT, MAX_PLAYERS
+    };
+    use starknet::{ContractAddress, get_caller_address, get_block_timestamp};
 
     #[event]
     #[derive(Drop, starknet::Event)]
     enum Event {
-        #[flat]
-        AchievableEvent: AchievableComponent::Event,
+        GameCreated: GameCreated,
+        PlayerMoved: PlayerMoved,
+        IngredientCollected: IngredientCollected,
     }
 
-    // Constructor
-    fn dojo_init(ref self: ContractState) {
-        let mut world = self.world(@"full_starter_react");
-
-        let mut achievement_id: u8 = 1;
-        while achievement_id <= constants::ACHIEVEMENTS_COUNT {
-            let achievement: Achievement = achievement_id.into();
-            self
-                .achievable
-                .create(
-                    world,
-                    id: achievement.identifier(),
-                    hidden: achievement.hidden(),
-                    index: achievement.index(),
-                    points: achievement.points(),
-                    start: achievement.start(),
-                    end: achievement.end(),
-                    group: achievement.group(),
-                    icon: achievement.icon(),
-                    title: achievement.title(),
-                    description: achievement.description(),
-                    tasks: achievement.tasks(),
-                    data: achievement.data(),
-                );
-            achievement_id += 1;
-        }
+    #[derive(Drop, starknet::Event)]
+    struct GameCreated {
+        game_id: u32,
+        creator: ContractAddress,
     }
 
-    // Implementation of the interface methods
-    #[abi(embed_v0)]
+    #[derive(Drop, starknet::Event)]
+    struct PlayerMoved {
+        game_id: u32,
+        player_index: u8,
+        new_x: u8,
+        new_y: u8,
+    }
+
+    #[derive(Drop, starknet::Event)]
+    struct IngredientCollected {
+        game_id: u32,
+        player_index: u8,
+        ingredient_id: u32,
+        ingredient_type: u8,
+    }
+
+    #[external(v0)]
     impl GameImpl of IGame<ContractState> {
-        
-        // Method to create a new player
-        fn spawn_player(ref self: ContractState) {
-            let mut world = self.world(@"full_starter_react");
-            let store = StoreTrait::new(world);
+        fn init(self: @ContractState, world: IWorldDispatcher, game_id: u32) {
+            let mut store = StoreTrait::new(world);
+            let creator = get_caller_address();
 
-            // Create new player
-            store.create_player();
-        }
+            // Create game state
+            let game_state = store.create_game_state(game_id, 0, MAX_PLAYERS, 50);
 
-        // Method to train player (+10 experience)
-        fn train(ref self: ContractState) {
-            let mut world = self.world(@"full_starter_react");
-            let store = StoreTrait::new(world);
-            let achievement_store = AchievementStoreTrait::new(world);
+            // Create players
+            store.create_player(game_id, 0, 'Player1', 0, 0);
+            store.create_player(game_id, 1, 'Player2', 11, 11);
 
-            let player = store.read_player();
-
-            // Train player
-            store.train_player();
-
-            // Emit events for achievements progression
-            let mut achievement_id = constants::ACHIEVEMENTS_INITIAL_ID; // 1
-            let stop = constants::ACHIEVEMENTS_COUNT; // 5
-            
-            while achievement_id <= stop {
-                let task: Achievement = achievement_id.into(); // u8 to Achievement
-                let task_identifier = task.identifier(); // Achievement identifier is the task to complete
-                achievement_store.progress(player.owner.into(), task_identifier, 1, get_block_timestamp());
-                achievement_id += 1;
+            // Initialize the board
+            let mut y: u8 = 0;
+            loop {
+                if y >= BOARD_HEIGHT {
+                    break;
+                }
+                let mut x: u8 = 0;
+                loop {
+                    if x >= BOARD_WIDTH {
+                        break;
+                    }
+                    store.write_board_tile(
+                        BoardTileTrait::new_regular(game_id, x, y, get_block_timestamp())
+                    );
+                    x += 1;
+                };
+                y += 1;
             };
+
+            self.emit(GameCreated { game_id, creator });
         }
 
-        // Method to mine coins (+5 coins, -5 health)
-        fn mine(ref self: ContractState) {
-            let mut world = self.world(@"full_starter_react");
-            let store = StoreTrait::new(world);
-            let achievement_store = AchievementStoreTrait::new(world);
+        fn move(self: @ContractState, world: IWorldDispatcher, game_id: u32, new_x: u8, new_y: u8) {
+            let mut store = StoreTrait::new(world);
+            let caller = get_caller_address();
 
-            let player = store.read_player();
-           
-            // Mine coins
-            store.mine_coins();
+            // Get game and player
+            let game_state = store.read_game_state(game_id);
+            let player_index = game_state.current_player_index;
+            let mut player = store.read_player(game_id, player_index);
 
-            // Emit events for achievements progression
-            let mut achievement_id = constants::ACHIEVEMENTS_INITIAL_ID; // 1
-            let stop = constants::ACHIEVEMENTS_COUNT; // 5
-            
-            while achievement_id <= stop {
-                let task: Achievement = achievement_id.into(); // u8 to Achievement
-                let task_identifier = task.identifier(); // Achievement identifier is the task to complete
-                achievement_store.progress(player.owner.into(), task_identifier, 1, get_block_timestamp());
-                achievement_id += 1;
-            };
+            assert(player.address == caller, "Not your turn");
+            assert(new_x < BOARD_WIDTH && new_y < BOARD_HEIGHT, "Invalid coordinates");
+
+            // TODO: Add adjacency check and energy cost
+            player.move_to(new_x, new_y);
+            store.write_player(player);
+
+            // Check for ingredient on the new tile
+            let tile = store.read_board_tile(game_id, new_x, new_y);
+            if tile.has_ingredient {
+                let mut ingredient = store.read_ingredient(game_id, tile.ingredient_id);
+                if !ingredient.is_collected {
+                    player.add_ingredient(ingredient.ingredient_type, 1);
+                    ingredient.collect(caller);
+                    store.write_ingredient(ingredient);
+                    store.write_player(player);
+
+                    self.emit(
+                        IngredientCollected {
+                            game_id,
+                            player_index,
+                            ingredient_id: ingredient.ingredient_id,
+                            ingredient_type: ingredient.ingredient_type,
+                        }
+                    );
+                }
+            }
+
+            // Update game state for next turn
+            let mut new_game_state = game_state;
+            new_game_state.next_turn();
+            store.write_game_state(new_game_state);
+
+            self.emit(PlayerMoved { game_id, player_index, new_x, new_y });
         }
 
-        // Method to rest player (+20 health)
-        fn rest(ref self: ContractState) {
-            let mut world = self.world(@"full_starter_react");
-            let store = StoreTrait::new(world);
-            let achievement_store = AchievementStoreTrait::new(world);
-
-            let player = store.read_player();
-
-            // Rest player
-            store.rest_player();
-
-            // Emit events for achievements progression
-            let mut achievement_id = constants::ACHIEVEMENTS_INITIAL_ID; // 1
-            let stop = constants::ACHIEVEMENTS_COUNT; // 5
-            
-            while achievement_id <= stop {
-                let task: Achievement = achievement_id.into(); // u8 to Achievement
-                let task_identifier = task.identifier(); // Achievement identifier is the task to complete
-                achievement_store.progress(player.owner.into(), task_identifier, 1, get_block_timestamp());
-                achievement_id += 1;
-            };
+        fn get_player(
+            self: @ContractState, world: IWorldDispatcher, game_id: u32, player_index: u8
+        ) -> Player {
+            StoreTrait::new(world).read_player(game_id, player_index)
         }
 
+        fn get_game_state(
+            self: @ContractState, world: IWorldDispatcher, game_id: u32
+        ) -> GameState {
+            StoreTrait::new(world).read_game_state(game_id)
+        }
     }
 }

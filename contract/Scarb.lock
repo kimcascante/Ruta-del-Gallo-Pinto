@@ -2,17 +2,9 @@
 version = 1
 
 [[package]]
-name = "achievement"
-version = "0.0.0"
-source = "git+https://github.com/cartridge-gg/arcade?branch=main#5268dc0b2c36224659413c868e5d880d25dcb54f"
-dependencies = [
- "dojo",
-]
-
-[[package]]
 name = "dojo"
-version = "1.5.0"
-source = "git+https://github.com/dojoengine/dojo?tag=v1.5.0#812f17c9c57fd057d0bf1e648a591ea0ca9ea718"
+version = "1.5.1"
+source = "git+https://github.com/dojoengine/dojo?rev=986c3b0c6d647b23847c70ddceb1d33ddac86ead#986c3b0c6d647b23847c70ddceb1d33ddac86ead"
 dependencies = [
  "dojo_plugin",
 ]
@@ -20,7 +12,7 @@ dependencies = [
 [[package]]
 name = "dojo_cairo_test"
 version = "1.0.12"
-source = "git+https://github.com/dojoengine/dojo?tag=v1.5.0#812f17c9c57fd057d0bf1e648a591ea0ca9ea718"
+source = "git+https://github.com/dojoengine/dojo?rev=986c3b0c6d647b23847c70ddceb1d33ddac86ead#986c3b0c6d647b23847c70ddceb1d33ddac86ead"
 dependencies = [
  "dojo",
 ]
@@ -28,13 +20,12 @@ dependencies = [
 [[package]]
 name = "dojo_plugin"
 version = "2.10.1"
-source = "git+https://github.com/dojoengine/dojo?tag=v1.5.0#812f17c9c57fd057d0bf1e648a591ea0ca9ea718"
+source = "git+https://github.com/dojoengine/dojo?rev=986c3b0c6d647b23847c70ddceb1d33ddac86ead#986c3b0c6d647b23847c70ddceb1d33ddac86ead"
 
 [[package]]
 name = "full_starter_react"
 version = "0.1.0"
 dependencies = [
- "achievement",
  "dojo",
  "dojo_cairo_test",
 ]

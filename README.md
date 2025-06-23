@@ -1,146 +1,153 @@
-# 🎮 Dojo Game Starter
+# 🌮 Ruta del Gallo Pinto 🐶
 
-> **The fastest way to build onchain games on Starknet**
-> From zero to deployed in 5 minutes ⚡
-
-<div align="center">
-  <img src="./client/src/assets/Dojo-Logo-Stylized-Red.svg" alt="Dojo Engine" height="60"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="./client/src/assets/DojoByExample_logo.svg" alt="Dojo by Example" height="60"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="./client/src/assets/SN-Linear-Gradient.svg" alt="Starknet" height="60"/>
-</div>
-
-## ✨ What's Included
-
-**🎨 Frontend Ready**
-- React + Vite + TypeScript with complete Dojo integration
-- Cartridge Controller wallet integration with session policies
-- Real-time game UI with optimistic updates
-- Comprehensive hooks for blockchain operations
-
-**⚙️ Backend Complete**
-- Cairo smart contracts with Dojo Engine architecture
-- Player progression system with experience, health, and coins
-- Integrated achievement system with 5+ achievements
-- Production-ready deployment configuration
-
-## 🛠️ Tech Stack
-
-```
-Frontend: React + Vite + TypeScript + TailwindCSS + Zustand
-Backend:  Cairo + Dojo Engine + Torii GraphQL Indexer
-Network:  Starknet (Local/Sepolia/Mainnet)
-Wallet:   Cartridge Controller
-```
-
-## 📦 Project Structure
-
-```
-dojo-game-starter/
-├── 📱 client/                    # Complete React + Dojo integration
-│   ├── src/dojo/                 # Core Dojo integration files
-│   │   ├── bindings.ts           # TypeScript interfaces from Cairo
-│   │   ├── dojoConfig.ts         # Network and connection configuration
-│   │   ├── contracts.gen.ts      # Auto-generated contract functions
-│   │   └── hooks/                # Custom React hooks for blockchain
-│   ├── docs/                     # 📚 Complete integration documentation
-│   └── README.md                 # Frontend-specific documentation
-├── ⚙️ contract/                 # Cairo smart contracts
-│   ├── src/
-│   │   ├── models/               # Data entities (Player model)
-│   │   ├── systems/              # Game logic (train, mine, rest)
-│   │   ├── achievements/         # Achievement system implementation
-│   │   └── store/                # Data layer abstraction
-│   └── README.md                 # Backend development and deployment guide
-└── tests/                        # Integration tests
-```
-
-## 📚 Documentation
-
-### **🎨 Frontend Integration**
-The `client/` directory contains a complete React + Dojo integration with comprehensive documentation:
-
-📖 **[Client Documentation](./client/README.md)** - Start here for frontend development
-
-**Complete Integration Guide Series:**
-- **[01. Overview](./client/docs/01-overview.md)** - Architecture and concepts
-- **[02. Architecture](./client/docs/02-architecture.md)** - System design patterns
-- **[03. Core Files](./client/docs/03-core-files.md)** - Essential integration files
-- **[04. Zustand State Management](./client/docs/04-zustand-state-management.md)** - Optimistic updates
-- **[05. Cartridge Controller](./client/docs/05-cartridge-controller.md)** - Gaming wallet UX
-- **[06. React Hooks Pattern](./client/docs/06-react-hooks-pattern.md)** - Blockchain hooks
-- **[07. Data Flow](./client/docs/07-data-flow.md)** - Request/response cycles
-- **[08. Extending the System](./client/docs/08-extending-system.md)** - Building your game
-
-### **⚙️ Backend Development**
-The `contract/` directory contains Cairo smart contracts with Dojo Engine:
-
-📖 **[Contracts Documentation](./contract/README.md)** - Backend development guide
-
-**Key Topics Covered:**
-- **Project Structure** - Models, Systems, Store architecture
-- **Game Mechanics** - Player actions (spawn, train, mine, rest)
-- **Achievement System** - Complete trophy/task implementation
-- **Local Development** - Katana, Sozo, Torii setup
-- **Sepolia Deployment** - Production deployment process
-- **Testing Strategy** - Integration tests and best practices
-
-## 🎮 Game Mechanics
-
-The starter demonstrates essential onchain game patterns:
-
-| Action | Effect | Demonstrates |
-|--------|--------|--------------|
-| 🏋️ **Train** | +10 Experience | Pure advancement mechanics |
-| ⛏️ **Mine** | +5 Coins, -5 Health | Risk/reward decision making |
-| 💤 **Rest** | +20 Health | Resource management systems |
-
-**🏆 Achievement System:**
-- **MiniGamer** (1 action) → **SenseiGamer** (50 actions)
-- Complete integration with frontend achievement display
-- Automatic progress tracking for all game actions
-
-## 🎯 Perfect For
-
-- 🏆 **Hackathon teams** needing rapid onchain game setup
-- 🎮 **Game developers** entering Web3 with production patterns
-- 🏢 **Studios** prototyping blockchain games with real UX
-- 📚 **Developers** learning Starknet + Dojo with comprehensive examples
-
-## 🚀 Key Features
-
-**⚡ Gaming-First UX**
-- Cartridge Controller integration eliminates wallet friction
-- Session policies enable uninterrupted gameplay
-- Optimistic updates provide instant feedback
-- Background blockchain confirmation
-
-**🔧 Developer Experience**
-- Complete TypeScript integration end-to-end
-- Hot reload with contract changes
-- Comprehensive error handling patterns
-- Production deployment configurations
-
-**🏗️ Scalable Architecture**
-- Modular component design for easy extension
-- Reusable hooks for blockchain operations
-- Clean separation between UI and blockchain logic
-- Performance optimizations built-in
-
-## 🌟 Getting Started
-
-1. **For Frontend Development:** Start with [Client README](./client/README.md)
-2. **For Backend Development:** Check [Contracts README](./contract/README.md)
-3. **For Complete Understanding:** Follow the [Integration Guide Series](./client/docs/)
-
-## 🔗 Links
-
-- **[Starknet](https://starknet.io)**
-- **[Dojo Engine](https://dojoengine.org)**
-- **[Cairo](https://cairo-lang.org)**
-- **[Cartridge](https://cartridge.gg)**
+Welcome to **Ruta del Gallo Pinto**! A 2D digital board game designed for multiplayer fun, set in the vibrant world of Costa Rica 🇨🇷. This game invites players to embark on a culinary adventure, collecting ingredients to create the iconic gallo pinto dish while exploring stunning landscapes through engaging minigames.
 
 ---
 
-**Built with ❤️ for the Starknet gaming community**
+## 📜 Table of Contents
+
+- [What is Ruta del Gallo Pinto?](#what-is-ruta-del-gallo-pinto)
+- [Key Features](#key-features)
+- [How to Play](#how-to-play)
+  - [Game Modes](#game-modes)
+  - [Minigames](#minigames)
+- [Installation](#installation)
+- [How to Contribute](#how-to-contribute)
+- [Credits](#credits)
+- [License](#license)
+- [Contact](#contact)
+
+---
+
+## 🌟 What is Ruta del Gallo Pinto?
+
+**Ruta del Gallo Pinto** is a digital board game where players take on the role of dog chefs 🐶 navigating a 2D map of Costa Rica to gather ingredients for gallo pinto (rice, beans, cilantro, salsa Lizano) and craft unique recipes. The game transports players through volcanoes, beaches, and jungles, challenging them with dynamic minigames that blend strategy, rhythm, and teamwork.
+
+### 🎯 Objective
+- **Competitive**: Craft the ultimate gallo pinto recipe and dominate the map by collecting ingredients and earning "pura vida" points.
+- **Cooperative**: Collaborate to prepare an epic gallo pinto for a Costa Rican festival.
+- **Narrative**: Build a unique story as you explore and cook.
+
+### 🎨 Aesthetic
+The game features a minimalist visual style with clean white tones, vibrant greens, and blues, showcasing Costa Rica’s landscapes through charming dog sprites.
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **Multiplayer** | Enjoy with 2-4 players in cooperative or competitive modes, featuring interactions like stealing ingredients or teaming up for minigames. |
+| **Varied Minigames** | Each map tile offers unique challenges, from surfing in Playa Tamarindo to cooking under pressure. |
+| **Exploration** | Navigate a map inspired by Costa Rica, including regions like Guanacaste, Caribbean, and Central Valley. |
+| **Customization** | Experiment with traditional and exotic ingredients (like mango or coffee) to create unique recipes. |
+| **Costa Rican Culture** | Immerse in "pura vida" with nods to oxcarts, marimba music, and gallo pinto. |
+
+---
+
+## 🎮 How to Play
+
+### 🗺️ The Board
+The game takes place on a 2D map of Costa Rica, divided into tiles representing iconic locations such as beaches, volcanoes, and markets. Players move their dog chefs using movement points and encounter challenges on each tile.
+
+### 🕹️ Core Mechanics
+1. **Movement**: Use movement points to traverse the map. Certain tiles trigger minigames or events.
+2. **Ingredients**: Gather rice, beans, cilantro, onions, and more to create your gallo pinto.
+3. **Minigames**: Complete challenges to earn ingredients, points, or strategic advantages.
+4. **Scoring**: Win by accumulating points from completed recipes, visited locations, and minigame successes.
+
+### 🎲 Game Modes
+<details>
+<summary><strong>Adventure Mode</strong> - Explore and Discover</summary>
+Journey through Costa Rica’s regions to collect unique ingredients. Minigames are tied to specific locations, like surfing in the Caribbean. Win by exploring the most regions and crafting the best recipe.
+</details>
+<details>
+<summary><strong>Competitive Mode</strong> - Strategic Domination</summary>
+Claim tiles and outmaneuver opponents. Use minigames to steal ingredients or secure advantages. Win by controlling the map.
+</details>
+<details>
+<summary><strong>Cooperative Mode</strong> - Teamwork Triumph</summary>
+Work together to prepare a massive gallo pinto against the clock, tackling group challenges. Ideal for team players.
+</details>
+<details>
+<summary><strong>Narrative Mode</strong> - Craft Your Story</summary>
+Weave a unique tale as you explore. Each minigame adds chapters to your story, with players voting for the best at the end.
+</details>
+
+### 🎉 Minigames
+| Minigame | Type | Description | Reward |
+|----------|------|-------------|--------|
+| **Surf in Playa Tamarindo** | Rhythm | Balance on a wave by pressing keys to the rhythm of marimba music. | Cilantro, "pura vida" points |
+| **Chaotic Kitchen** | Cooperative | Cook gallo pinto by assigning tasks (chop, fry) under time pressure. | Full ingredients |
+| **Race to San José Market** | Competitive | Dash through San José, dodging obstacles to reach the market first. | Salsa Lizano, advantage |
+| **Eruption at Arenal Volcano** | Reflexes | Dodge falling rocks while collecting cilantro in an active volcano. | Cilantro, extra points |
+| **Ox Cart Delivery** | Cooperative | Pass ingredients between dogs to fill an oxcart before it departs. | Ingredients for all |
+| **Sazón Duel** | Memory | Replicate a sequence of ingredients in order. | Special ingredient |
+| **Tortuguero Rescue** | Puzzle | Solve a puzzle to guide baby turtles to the sea. | Sustainability points |
+| **Festival Dance** | Rhythm | Dance to Costa Rican music to captivate the crowd. | Festival points |
+
+---
+
+## 🛠️ Installation
+
+1. **Clone the Repository**:
+   ```bash
+   git clone <REPOSITORY_URL>
+   ```
+2. **Navigate to the Directory**:
+   ```bash
+   cd ruta-del-gallo-pinto
+   ```
+3. **Install Dependencies**:
+   Ensure your development environment is configured and run the command to install required dependencies (refer to the project’s configuration file).
+4. **Start the Game**:
+   Execute the command to launch the game in your browser.
+5. **Play!**:
+   Open the local link in your browser and dive into your Costa Rican adventure.
+
+> **Note**: An internet connection is required for multiplayer mode. Verify that your environment meets the project’s requirements.
+
+---
+
+## 🤝 How to Contribute
+
+We invite the community to help **Ruta del Gallo Pinto** thrive! To contribute, follow these steps:
+
+1. **Fork the Repository**: Create your own copy to begin working.
+2. **Create a Branch**: Use descriptive names, such as `feature/new-minigame` or `bugfix/board`.
+3. **Follow Style Guidelines**:
+   - Preserve the minimalist aesthetic with white tones.
+   - Design minigames to be quick and engaging.
+   - Honor the Costa Rican theme and dog characters 🐶.
+4. **Submit a Pull Request**: Detail your changes and their impact on the game.
+5. **Ideas Welcome**:
+   - New minigames inspired by Costa Rica.
+   - Designs for dog characters or regions.
+   - Story elements for the narrative mode.
+
+See the `CONTRIBUTING.md` file for additional guidance.
+
+---
+
+## 🙌 Credits
+
+- **Original Concept**: A celebration of Costa Rican culture and culinary adventure.
+- **Development**: Crafted by a community passionate about games and "pura vida."
+- **Thanks**: To all who share a love for interactive board games.
+
+---
+
+## 📝 License
+
+This project is licensed under the **MIT License**. You may use, modify, and distribute the code freely, provided the copyright notice is included. Review the `LICENSE` file for details.
+
+---
+
+## 📬 Contact
+
+Have ideas, feedback, or issues to report? Get in touch!
+- **Email**: ruta.del.gallo.pinto@example.com
+- **Social Media**: Follow us on [X](https://x.com/rutagallo) for updates.
+- **Community**: Join our [Discord](#) (coming soon).
+
+Pura vida and happy cooking! 🌮🐶

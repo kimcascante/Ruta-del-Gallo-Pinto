@@ -1,4 +1,4 @@
-# 9. Extending the System - Dojo Game Starter
+# 8. Extending the System - Dojo Game Starter
 
 ## 🎯 Extension Philosophy
 

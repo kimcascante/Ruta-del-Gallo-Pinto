@@ -30,12 +30,17 @@ The starter game includes these onchain actions:
 | **💤 Rest** | Click "Rest" button | Calls `game.rest()` | +20 Health |
 | **🎯 Spawn** | Auto-triggered on login | Calls `game.spawn_player()` | Creates new player |
 
+**🏆 Achievement System:**
+- **MiniGamer** (1 action) → **SenseiGamer** (50 actions)
+- Complete integration with frontend achievement display
+- Automatic progress tracking for all game actions
+
 ## 🔧 Key Integration Components
 
 ### 1. **Frontend Layer** (React + TypeScript)
-- **UI Components**: Game interface, player stats, action buttons
-- **State Management**: Zustand for global state
-- **Real-time Updates**: Optimistic UI updates + blockchain confirmation
+- **UI Components**: Game interface, player stats, action buttons, achievement display
+- **State Management**: Zustand for global state with optimistic updates
+- **Real-time Updates**: Instant UI feedback + blockchain confirmation
 
 ### 2. **Connection Layer** (Custom Hooks)
 - **`usePlayer`**: Fetches player data from blockchain
@@ -67,20 +72,22 @@ The starter game includes these onchain actions:
 
 ## 🎨 What Makes This Integration Special?
 
-### ✨ **Optimistic Updates**
-- **Instant Feedback**: UI updates immediately when user acts
-- **Progressive Enhancement**: Blockchain confirmation happens in background
-- **Rollback Capability**: Reverts changes if transaction fails
+### ✨ **Gaming-First UX**
+- **Cartridge Controller**: Gaming-focused wallet integration eliminates friction
+- **Session Policies**: Enable uninterrupted gameplay without wallet popups
+- **Optimistic Updates**: Instant feedback for immediate UI response
+- **Background Confirmation**: Blockchain operations happen seamlessly
 
 ### 🔐 **Seamless Authentication**
-- **Cartridge Controller**: Gaming-focused wallet integration
 - **Auto-Detection**: Automatically detects existing players
 - **Auto-Creation**: Creates new players for first-time users
+- **Session Management**: Maintains connection state across page reloads
 
 ### 🚀 **Developer Experience**
 - **Clean Separation**: UI logic separated from blockchain logic
 - **TypeScript Safety**: Full type safety from contracts to UI
 - **Reusable Patterns**: Hooks can be extended for new game features
+- **Production Ready**: Environment-based configuration and deployment
 
 ## 📊 State Management Philosophy
 
@@ -111,10 +118,12 @@ By studying this integration, you'll understand:
 3. **Transaction Management**: Handling async blockchain operations
 4. **State Patterns**: Effective state management for Web3 apps
 5. **User Experience**: Creating smooth UX despite blockchain delays
+6. **Achievement Systems**: Implementing progression mechanics
+7. **Production Deployment**: Environment management and configuration
 
 ## 🔍 What's Next?
 
-This overview provides the foundation. In the following READMEs, we'll dive deep into:
+This overview provides the foundation. In the following guides, we'll dive deep into:
 
 - **Architecture**: Detailed system design and component relationships
 - **Core Files**: Understanding each file's role and implementation

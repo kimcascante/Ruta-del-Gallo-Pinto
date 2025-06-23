@@ -81,6 +81,11 @@ The starter includes three core actions that demonstrate different interaction p
 | ⛏️ **Mine** | +5 Coins, -5 Health | Risk/reward decisions |
 | 💤 **Rest** | +20 Health | Resource management |
 
+**🏆 Achievement System:**
+- **MiniGamer** (1 action) → **SenseiGamer** (50 actions)
+- Complete integration with frontend achievement display
+- Automatic progress tracking for all game actions
+
 These simple mechanics showcase the complete integration stack: from Cairo contracts to React components, with optimistic updates and error handling.
 
 ---
@@ -108,27 +113,23 @@ Data:      Torii GraphQL + Optimistic Updates
 
 ## 🌟 Key Features
 
-**⚡ Instant Feedback**
-- Optimistic updates for immediate UI response
+**⚡ Gaming-First UX**
+- Cartridge Controller integration eliminates wallet friction
+- Session policies enable uninterrupted gameplay
+- Optimistic updates provide instant feedback
 - Background blockchain confirmation
-- Automatic rollback on transaction failure
-
-**🎮 Gaming-First UX**
-- Cartridge Controller integration
-- Session policies for seamless actions
-- No wallet popups during gameplay
 
 **🔧 Developer Experience**
-- Complete TypeScript integration
+- Complete TypeScript integration end-to-end
 - Hot reload with contract changes
-- Comprehensive error handling
-- Testing strategies included
+- Comprehensive error handling patterns
+- Production deployment configurations
 
-**🚀 Production Ready**
-- Environment-based configuration
-- Performance optimizations
-- Deployment best practices
-- Monitoring and analytics patterns
+**🏗️ Scalable Architecture**
+- Modular component design for easy extension
+- Reusable hooks for blockchain operations
+- Clean separation between UI and blockchain logic
+- Performance optimizations built-in
 
 ---
 
@@ -137,7 +138,7 @@ Data:      Torii GraphQL + Optimistic Updates
 1. **Start with [Overview](./docs/01-overview.md)** to understand the big picture
 2. **Follow the guides in order** for comprehensive understanding
 3. **Reference specific topics** as needed during development
-4. **Use [Extending the System](./docs/09-extending-system.md)** to build your unique game
+4. **Use [Extending the System](./docs/08-extending-system.md)** to build your unique game
 
 Each guide builds upon the previous ones, creating a complete learning path from basic concepts to advanced implementation patterns.
 
